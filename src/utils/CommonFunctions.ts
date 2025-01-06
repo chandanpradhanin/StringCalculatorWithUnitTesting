@@ -12,6 +12,11 @@ const add = (inputString: string) => {
 
     const numbersArray = inputString.split(separator).map(Number);
 
+    const negativeNumbers = numbersArray.filter(value => value < 0);
+    if (negativeNumbers.length) {
+      throw new Error(`Invalid numbers ${negativeNumbers.join(',')}`);
+    }
+
     return numbersArray.reduce(
       (total, value) => total + (isNaN(value) ? 0 : value),
       0,
